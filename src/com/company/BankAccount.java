@@ -10,25 +10,20 @@ public class BankAccount {
 
     }
 
-    public double getAmount() {
-        return amount;
+    public int getAmount() {
+        return (int) amount;
     }
 
-    public double withDraw(double sum) throws LimitException {
+    public double withDraw(int sum) throws LimitException {
 
 
         if (sum > amount) {
-            throw new LimitException("Запрашиваемая сумма больше чем остаток!", getAmount());
+            throw new LimitException("Запрашиваемая сумма больше чем остаток!", sum);
 
         }
-        return deposit(-sum);
+        System.out.println("Остаток: " + amount + " сом," + " снято: " + sum + " сом.");
+        return amount -= sum;
 
-    }
-
-
-    public void print() {
-
-        System.out.println("Остаток: " + getAmount() + " сом");
 
     }
 
