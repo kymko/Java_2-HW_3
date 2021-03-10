@@ -1,13 +1,12 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-
-        boolean t = true;
 
         BankAccount bankAccount = new BankAccount();
         System.out.println("На ваш баланс добавлен " + bankAccount.deposit(20000) + " cом");
@@ -21,17 +20,21 @@ public class Main {
                 System.out.println("Хотите снять остаток?");
                 Scanner scanner = new Scanner(System.in);
                 String s = scanner.nextLine();
-                try {
-                    bankAccount.withDraw(bankAccount.getAmount());
-                } catch (LimitException e1) {
+                if (s.equals("да") || s.equals("ДА") || s.equals("Да")) {
+                    try {
+                        bankAccount.withDraw(bankAccount.getAmount());
+                    } catch (LimitException e1) {
+                        System.out.println(e1.getMessage());
 
+                    }
                     break;
-                }
-                System.out.println("На вашем счету: " + bankAccount.getAmount() + " сом");
+
+                } else System.out.println("Вы не сняли остаток");
                 break;
 
-            }
 
+            }
+        System.out.println("На вашем счету: " + bankAccount.getAmount() + " сом");
 
     }
 }
